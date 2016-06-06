@@ -1,0 +1,23 @@
+{
+	"icons": {
+		"48": "tenon-w48.png",
+		"96": "tenon-w96.png"
+	},
+
+	"browser_action": {
+		"default_title": "Tenon Test",
+		"default_icon": {
+			"18": "tenon-w18.png",
+			"32": "tenon-w32.png",
+			"36": "tenon-w36.png",
+			"64": "tenon-w64.png"
+		}
+	},
+
+	"applications": {
+		"gecko": {
+			"id": "tenon-test@matatk",
+			"strict_min_version": "45.0"
+		}
+	}
+}
