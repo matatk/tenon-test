@@ -1,9 +1,9 @@
 Tenon Test
 ==========
 
-Test web pages for accessibility with [Tenon](http://tenon.io) from within Chrome.
+Test web pages for accessibility with [Tenon](http://tenon.io) from within Chrome or Firefox.
 
-This Chrome extension allows you to test a page using Tenon by sending its source (DOM serialised as a string) to the Tenon API. This is useful for pages that are behind 'login walls' or similar, which Tenon cannot access from outside.
+This browser extension allows you to test a page using Tenon by sending its source (DOM serialised as a string) to the Tenon API. This is useful for pages that are behind 'login walls' or similar, which Tenon cannot access from outside.
 
 This is very preliminary just now! If the page you want to test is publicly-reachable, you should really check out the 'Tenon Check' extension, which you can get for Chrome, Firefox and Opera at the following locations.
 

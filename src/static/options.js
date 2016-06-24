@@ -1,25 +1,35 @@
-// Saves options to chrome.storage.sync.
-function save_options() {
+function saveOptions() {
 	var api_key = document.getElementById('api_key').value;
-	chrome.storage.sync.set({
+	setWrapper({
 		api_key: api_key
-	}, function() {
-		// Update status to let user know options were saved.
-		var status = document.getElementById('status');
-		status.textContent = 'Options saved.';
-		setTimeout(function() {
-			status.textContent = '';
-		}, 750);
 	});
 }
 
-function restore_options() {
-	chrome.storage.sync.get({
+function restoreOptions() {
+	getWrapper({
 		api_key: '',
 	}, function(items) {
 		document.getElementById('api_key').value = items.api_key;
 	});
 }
 
-document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click', save_options);
+// Wrappers to support Firefox (which doesn't have storage.sync)
+// and handle the status update.
+function getWrapper(options, action) {
+	var area = chrome.storage.sync || chrome.storage.local;
+	area.get(options, action);
+}
+
+function setWrapper(options) {
+	var area = chrome.storage.sync || chrome.storage.local;
+	area.set(options, function() {
+		var statusRegion = document.getElementById('status');
+		statusRegion.textContent = 'Options saved.';
+		setTimeout(function() {
+			statusRegion.textContent = '';
+		}, 750);
+	});
+}
+
+document.addEventListener('DOMContentLoaded', restoreOptions);
+document.getElementById('save').addEventListener('click', saveOptions);

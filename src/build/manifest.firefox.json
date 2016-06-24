@@ -5,6 +5,7 @@
 	},
 
 	"browser_action": {
+		"browser_style": true,
 		"default_title": "Tenon Test",
 		"default_icon": {
 			"18": "tenon-w18.png",
@@ -17,7 +18,7 @@
 	"applications": {
 		"gecko": {
 			"id": "tenon-test@matatk",
-			"strict_min_version": "45.0"
+			"strict_min_version": "48.0"
 		}
 	}
 }
