@@ -1,16 +1,16 @@
 {
 	"icons": {
-		"16": "tenon-w16.png",
-		"32": "tenon-w32.png",
-		"48": "tenon-w48.png",
-		"128": "tenon-w128.png"
+		"16": "tenon-16.png",
+		"32": "tenon-32.png",
+		"48": "tenon-48.png",
+		"128": "tenon-128.png"
 	},
 
 	"browser_action": {
 		"default_title": "Tenon Test",
 		"default_icon": {
-			"19": "tenon-w19.png",
-			"38": "tenon-w38.png"
+			"19": "tenon-19.png",
+			"38": "tenon-38.png"
 		}
 	}
 }
