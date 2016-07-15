@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Tenon Test",
-	"version": "0.1.0",
+	"version": "@version@",
 	"description": "Tests current page (via DOM serialisation) in the Tenon accessibility testing tool",
 	"author": "Matthew Tylee Atkinson",
 	"homepage_url": "https://github.com/matatk/tenon-test/",

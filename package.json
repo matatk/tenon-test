@@ -10,6 +10,8 @@
     "grunt-json-merge": "~0.2",
     "grunt-magick-svg2png": "github:matatk/grunt-magick-svg2png",
     "grunt-mkdir": "~1.0",
+    "grunt-text-replace": "~0.4",
+    "grunt-zip": "~0.17",
     "load-grunt-tasks": "~3.5",
     "time-grunt": "~1.3"
   }
