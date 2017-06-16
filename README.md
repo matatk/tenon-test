@@ -21,8 +21,6 @@ Important Notes and Limitations
 -   This currently only sends over the serialised HTML code for the DOM (including any inline CSS or images) -- therefore Tenon cannot carry out some tests of which it's capable, such as contrast tests, and no JavaScript-induced behaviour will be reflected.
 -   Currently you cannot specify or chose a project under which the results will be filed.
 
-Test a page using Tenon, either by the page's URL or by sending over its source.
-
 Usage
 -----
 

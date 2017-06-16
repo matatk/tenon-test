@@ -1,35 +1,37 @@
+'use strict'
+
 function saveOptions() {
-	var api_key = document.getElementById('api_key').value;
+	const apiKey = document.getElementById('api-key').value
 	setWrapper({
-		api_key: api_key
-	});
+		apiKey: apiKey
+	})
 }
 
 function restoreOptions() {
 	getWrapper({
-		api_key: '',
+		apiKey: '',
 	}, function(items) {
-		document.getElementById('api_key').value = items.api_key;
-	});
+		document.getElementById('api-key').value = items.apiKey
+	})
 }
 
 // Wrappers to support Firefox (which doesn't have storage.sync)
 // and handle the status update.
 function getWrapper(options, action) {
-	var area = chrome.storage.sync || chrome.storage.local;
-	area.get(options, action);
+	const area = browser.storage.sync || browser.storage.local
+	area.get(options, action)
 }
 
 function setWrapper(options) {
-	var area = chrome.storage.sync || chrome.storage.local;
+	const area = browser.storage.sync || browser.storage.local
 	area.set(options, function() {
-		var statusRegion = document.getElementById('status');
-		statusRegion.textContent = 'Options saved.';
+		const statusRegion = document.getElementById('status')
+		statusRegion.textContent = 'Options saved.'
 		setTimeout(function() {
-			statusRegion.textContent = '';
-		}, 750);
-	});
+			statusRegion.textContent = ''
+		}, 750)
+	})
 }
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.getElementById('save').addEventListener('click', saveOptions);
+document.addEventListener('DOMContentLoaded', restoreOptions)
+document.getElementById('save').addEventListener('click', saveOptions)

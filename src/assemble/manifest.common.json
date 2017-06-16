@@ -11,13 +11,13 @@
 	],
 
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": ["compatibility.js", "background.js"]
 	},
 
 	"content_scripts": [
 		{
 			"matches": ["*://*/*"],
-			"js": ["content.js"]
+			"js": ["compatibility.js", "content.js"]
 		}
 	],
 
