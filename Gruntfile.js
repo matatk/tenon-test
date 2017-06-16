@@ -1,11 +1,11 @@
 module.exports = function(grunt) {
-	require('load-grunt-tasks')(grunt);
-	require('time-grunt')(grunt);
+	require('load-grunt-tasks')(grunt)
+	require('time-grunt')(grunt)
 
-	const packageJSON = require('./package.json');
-	const extName = packageJSON.name;
-	const extVersion = packageJSON.version;
-	const extFileNameZip = extName + '-' + extVersion + '.zip';
+	const packageJSON = require('./package.json')
+	const extName = packageJSON.name
+	const extVersion = packageJSON.version
+	const extFileNameZip = extName + '-' + extVersion + '.zip'
 
 	// Project configuration
 	grunt.initConfig({
@@ -46,10 +46,8 @@ module.exports = function(grunt) {
 			}
 		},
 
-		jshint: {
-			options: {
-				jshintrc: true
-			}
+		eslint: {
+			target: ['src/']
 		}
 	});
 
@@ -59,7 +57,7 @@ module.exports = function(grunt) {
 		grunt.config.set('clean.' + browser, [
 			'extension/' + browser,
 			'build/' + browser
-		]);
+		])
 
 		grunt.config.set('mkdir.' + browser, {
 			options: {
@@ -68,7 +66,7 @@ module.exports = function(grunt) {
 					'build/' + browser
 				]
 			}
-		});
+		})
 
 		grunt.config.set('json_merge.' + browser, {
 			files: [{
@@ -78,7 +76,7 @@ module.exports = function(grunt) {
 					'src/assemble/manifest.' + browser + '.json'
 				]
 			}]
-		});
+		})
 
 		grunt.config.set('replace.' + browser, {
 			src: 'extension/' + browser + '/manifest.json',
@@ -87,7 +85,7 @@ module.exports = function(grunt) {
 				from: '@version@',
 				to: extVersion
 			}]
-		});
+		})
 
 		grunt.config.set('copy.' + browser, {
 			files: [{
@@ -96,17 +94,17 @@ module.exports = function(grunt) {
 				src: ['*.js', '*.html'],
 				dest: 'extension/' + browser + '/'
 			}]
-		});
+		})
 
 		grunt.config.set('jshint.' + browser, [
 			'extension/' + browser + '/*.js'
-		]);
+		])
 
 		grunt.config.set('zip.' + browser, {
 			cwd: 'extension/' + browser,
 			src: 'extension/' + browser + '/*',
 			dest: 'build/' + browser + '/' + extFileNameZip
-		});
+		})
 
 		grunt.registerTask(browser, [
 			'clean:' + browser,
@@ -115,13 +113,13 @@ module.exports = function(grunt) {
 			'copy:' + browser,
 			'json_merge:' + browser,
 			'replace:' + browser,
-			'jshint:' + browser,
 			'zip:' + browser
-		]);
-	});
+		])
+	})
 
 	grunt.registerTask('default', [
+		'eslint',
 		'chrome',
 		'firefox'
-	]);
-};
+	])
+}

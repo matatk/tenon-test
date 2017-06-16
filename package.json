@@ -14,5 +14,8 @@
     "grunt-zip": "~0.17",
     "load-grunt-tasks": "~3.5",
     "time-grunt": "~1.3"
+  },
+  "dependencies": {
+    "grunt-eslint": "^20.0.0"
   }
 }
