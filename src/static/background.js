@@ -20,7 +20,7 @@ function testWithTenon(contentResponse) {
 	xhr.open('POST', 'https://tenon.io/api/', true)
 	xhr.onload = function() {
 		const responseJSON = JSON.parse(this.responseText)
-		if (responseJSON.status !== '200' ) {
+		if (responseJSON.status !== 200 ) {
 			console.log('Tenon API response:', responseJSON)
 			alert('Tenon error: ' + responseJSON.message +
 				'\nMore info:\n\n' + responseJSON.moreInfo +
@@ -28,8 +28,8 @@ function testWithTenon(contentResponse) {
 				'chrome://extensions/ debug console.')
 		} else {
 			browser.tabs.create({
-				'url': 'http://tenon.io/history.php?responseID=' +
-				responseJSON.request.responseID})
+				'url': responseJSON.resultUrl
+			})
 		}
 
 		// Re-enable the browser action button
