@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt)
 	require('time-grunt')(grunt)
@@ -5,13 +7,12 @@ module.exports = function(grunt) {
 	const packageJSON = require('./package.json')
 	const extName = packageJSON.name
 	const extVersion = packageJSON.version
-	const extFileNameZip = extName + '-' + extVersion + '.zip'
 
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		magick_svg2png: {
+		'magick_svg2png': {
 			chrome: {
 				options: {
 					widths: [
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					src: 'src/assemble/*.svg',
-					dest: 'extension/chrome/'
+					dest: 'build/chrome/'
 				}]
 			},
 			firefox: {
@@ -41,7 +42,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					src: 'src/assemble/*.svg',
-					dest: 'extension/firefox/'
+					dest: 'build/firefox/'
 				}]
 			}
 		},
@@ -55,14 +56,12 @@ module.exports = function(grunt) {
 	// so declare them in a loop
 	['firefox', 'chrome'].forEach(function(browser) {
 		grunt.config.set('clean.' + browser, [
-			'extension/' + browser,
 			'build/' + browser
 		])
 
 		grunt.config.set('mkdir.' + browser, {
 			options: {
 				create: [
-					'extension/' + browser,
 					'build/' + browser
 				]
 			}
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
 
 		grunt.config.set('json_merge.' + browser, {
 			files: [{
-				dest: 'extension/' + browser + '/manifest.json',
+				dest: 'build/' + browser + '/manifest.json',
 				src: [
 					'src/assemble/manifest.common.json',
 					'src/assemble/manifest.' + browser + '.json'
@@ -79,7 +78,7 @@ module.exports = function(grunt) {
 		})
 
 		grunt.config.set('replace.' + browser, {
-			src: 'extension/' + browser + '/manifest.json',
+			src: 'build/' + browser + '/manifest.json',
 			overwrite: true,
 			replacements: [{
 				from: '@version@',
@@ -92,18 +91,20 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'src/static/',
 				src: ['*.js', '*.html'],
-				dest: 'extension/' + browser + '/'
+				dest: 'build/' + browser + '/'
 			}]
 		})
 
 		grunt.config.set('jshint.' + browser, [
-			'extension/' + browser + '/*.js'
+			'build/' + browser + '/*.js'
 		])
 
+		const zipFileName = extName + '-' + extVersion + '-' + browser + '.zip'
+
 		grunt.config.set('zip.' + browser, {
-			cwd: 'extension/' + browser,
-			src: 'extension/' + browser + '/*',
-			dest: 'build/' + browser + '/' + extFileNameZip
+			cwd: 'build/' + browser,
+			src: 'build/' + browser + '/*',
+			dest: zipFileName
 		})
 
 		grunt.registerTask(browser, [
